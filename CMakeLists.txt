@@ -14,3 +14,6 @@ project ("MyMoon")
 
 # 包含子项目。
 add_subdirectory ("MyMoon")
+add_subdirectory("VulkanModule") # 隔离vulkan的模块
+add_subdirectory("VulkanTest") # vulkan测试主窗口
+# add_subdirectory("OpenGLTest") # vulkan测试主窗口
