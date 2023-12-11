@@ -3,7 +3,7 @@
 #
 
 # 将源代码添加到此项目的可执行文件。
-# add_executable (Moon "VulkanTest.cpp" "VulkanTest.h")
+#add_executable (OpenGLTest "OpenGl_Main.cpp")
 
 #if (CMAKE_VERSION VERSION_GREATER 3.12)
  # set_property(TARGET Moon PROPERTY CXX_STANDARD 20)

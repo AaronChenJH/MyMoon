@@ -22,7 +22,7 @@ message("CMAKE_CURRENT_LIST_LINE ${CMAKE_CURRENT_LIST_LINE}")   # 当前执行 C
 
 
 # project ("MyMoon")
-project("MyMoon" VERSION 1.0.0.0 DESCRIPTION "主项目" HOMEPAGE_URL https://www.example.com LANGUAGES CXX)
+project("MyMoon" VERSION 1.0.0.0 DESCRIPTION "主项目" HOMEPAGE_URL https://www.example.com )
 
 # 要求编译器必须支持 c++ 17
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -42,17 +42,39 @@ if(WIN32)
 endif(WIN32)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/modules/")
+
 link_directories(${CMAKE_SOURCE_DIR}/lib)
 
-message("CMAKE_PROJECT_DESCRIPTION ${CMAKE_PROJECT_DESCRIPTION}")
-message("CMAKE_PROJECT_HOMEPAGE_URL ${CMAKE_PROJECT_HOMEPAGE_URL}")
-message("CMAKE_PROJECT_NAME ${CMAKE_PROJECT_NAME}")
+# find the required packages
+find_package(GLM REQUIRED)
+message(STATUS "GLM included at ${GLM_INCLUDE_DIR}")
+find_package(GLFW3 REQUIRED)
+message(STATUS "Found GLFW3 in ${GLFW3_INCLUDE_DIR}")
+find_package(ASSIMP REQUIRED)
+message(STATUS "Found ASSIMP in ${ASSIMP_INCLUDE_DIR}")
 
-message("CMAKE_PROJECT_VERSION ${CMAKE_PROJECT_VERSION}")
-message("CMAKE_PROJECT_VERSION_MAJOR ${CMAKE_PROJECT_VERSION_MAJOR}")
-message("CMAKE_PROJECT_VERSION_MINOR ${CMAKE_PROJECT_VERSION_MINOR}")
-message("CMAKE_PROJECT_VERSION_PATCH ${CMAKE_PROJECT_VERSION_PATCH}")
-message("CMAKE_PROJECT_VERSION_TWEAK ${CMAKE_PROJECT_VERSION_TWEAK}")
+if(WIN32)
+  set(LIBS glfw3 opengl32 assimp freetype irrKlang)
+  add_definitions(-D_CRT_SECURE_NO_WARNINGS) # 关闭安全检查
+else()
+  set(LIBS )
+endif(WIN32)
+
+# 读取输入文件中的内容，将 CMakeLists.txt 文件中的变量转变为 C/C++ 中可识别的宏定义
+configure_file(configuration/root_directory.h.in configuration/root_directory.h)
+include_directories(${CMAKE_BINARY_DIR}/configuration)
+
+# first create relevant static libraries required for other projects
+# 添加静态库
+add_library(STB_IMAGE "src/stb_image.cpp")
+set(LIBS ${LIBS} STB_IMAGE)
+
+#add_library(GLAD "src/glad.c")
+#set(LIBS ${LIBS} GLAD)
+
+
+
+include_directories(${CMAKE_SOURCE_DIR}/includes)
 
 add_executable(MyMoon main.cpp)
 
@@ -61,4 +83,17 @@ add_executable(MyMoon main.cpp)
 #add_subdirectory("VulkanModule") # 隔离vulkan的模块
 add_subdirectory("VulkanTest") # vulkan测试主窗口
 #include("VulkanTest")
-# add_subdirectory("OpenGLTest") # vulkan测试主窗口
+add_subdirectory("OpenGLTest") # vulkan测试主窗口
+
+
+if(WIN32)
+	message("WIN32 6666666666666666666666666666666")
+endif(WIN32)
+
+if(MSVC)
+    message("MSVC 777777777777777777777777777777777")
+endif(MSVC)
+
+message("CMAKE_PROJECT_DESCRIPTION ${CMAKE_PROJECT_DESCRIPTION}")
+message("CMAKE_PROJECT_HOMEPAGE_URL ${CMAKE_PROJECT_HOMEPAGE_URL}")
+message("CMAKE_PROJECT_NAME ${CMAKE_PROJECT_NAME}")
