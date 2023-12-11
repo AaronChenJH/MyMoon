@@ -69,14 +69,14 @@ include_directories(${CMAKE_BINARY_DIR}/configuration)
 add_library(STB_IMAGE "src/stb_image.cpp")
 set(LIBS ${LIBS} STB_IMAGE)
 
-#add_library(GLAD "src/glad.c")
-#set(LIBS ${LIBS} GLAD)
+add_library(GLAD "src/glad.c")
+set(LIBS ${LIBS} GLAD)
 
-
+add_executable(MyMoon main.cpp)
 
 include_directories(${CMAKE_SOURCE_DIR}/includes)
 
-add_executable(MyMoon main.cpp)
+
 
 # 包含子项目。
 #add_subdirectory ("MyMoon")

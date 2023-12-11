@@ -26,6 +26,7 @@ using namespace std;
 //}
 
 int main() {
+    cout << "Hello CMake Vulkan demo." << endl;
     //glfwInit();
 
     //glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
