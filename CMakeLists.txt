@@ -34,10 +34,11 @@ message("CMAKE_PROJECT_VERSION_MINOR ${CMAKE_PROJECT_VERSION_MINOR}")
 message("CMAKE_PROJECT_VERSION_PATCH ${CMAKE_PROJECT_VERSION_PATCH}")
 message("CMAKE_PROJECT_VERSION_TWEAK ${CMAKE_PROJECT_VERSION_TWEAK}")
 
+add_executable(MyMoon main.cpp)
 
 # 包含子项目。
-add_subdirectory ("MyMoon")
-add_subdirectory("VulkanModule") # 隔离vulkan的模块
+#add_subdirectory ("MyMoon")
+#add_subdirectory("VulkanModule") # 隔离vulkan的模块
 add_subdirectory("VulkanTest") # vulkan测试主窗口
 #include("VulkanTest")
 # add_subdirectory("OpenGLTest") # vulkan测试主窗口
