@@ -74,17 +74,8 @@ set(LIBS ${LIBS} GLAD)
 
 add_executable(MyMoon main.cpp)
 
+# 将指定目录添加到编译器的头文件搜索路径之下，指定的目录被解释成当前源码路径的相对路径
 include_directories(${CMAKE_SOURCE_DIR}/includes)
-
-
-
-# 包含子项目。
-#add_subdirectory ("MyMoon")
-#add_subdirectory("VulkanModule") # 隔离vulkan的模块
-add_subdirectory("VulkanTest") # vulkan测试主窗口
-#include("VulkanTest")
-add_subdirectory("OpenGLTest") # vulkan测试主窗口
-
 
 if(WIN32)
 	message("WIN32 6666666666666666666666666666666")
@@ -97,3 +88,10 @@ endif(MSVC)
 message("CMAKE_PROJECT_DESCRIPTION ${CMAKE_PROJECT_DESCRIPTION}")
 message("CMAKE_PROJECT_HOMEPAGE_URL ${CMAKE_PROJECT_HOMEPAGE_URL}")
 message("CMAKE_PROJECT_NAME ${CMAKE_PROJECT_NAME}")
+
+# 包含子项目。
+#add_subdirectory ("MyMoon")
+#add_subdirectory("VulkanModule") # 隔离vulkan的模块
+add_subdirectory("VulkanTest") # vulkan测试主窗口
+#include("VulkanTest")
+add_subdirectory("OpenGLTest") # vulkan测试主窗口

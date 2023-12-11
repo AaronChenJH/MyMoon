@@ -5,10 +5,8 @@
 # 将源代码添加到此项目的可执行文件。
 add_executable (OpenGLTest "OpenGl_Main.cpp")
 
+# link_libraries用来链接静态库，target_link_libraries用来链接导入库，
 target_link_libraries(OpenGLTest ${LIBS})
 
-#if (CMAKE_VERSION VERSION_GREATER 3.12)
- # set_property(TARGET Moon PROPERTY CXX_STANDARD 20)
-#endif()
 
 # TODO: 如有需要，请添加测试并安装目标。
