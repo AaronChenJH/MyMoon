@@ -10,10 +10,10 @@
 #endif()
 
 # GLOB_RECURSE 能查到嵌套的目录,CONFIGURE_DEPENDS 动检测目录是否更新
-file(GLOB_RECURSE srcs CONFIGURE_DEPENDS src/*.cpp include/*.h) 
-add_library(VulkanModule STATIC ${srcs})
+#file(GLOB_RECURSE srcs CONFIGURE_DEPENDS src/*.cpp include/*.h) 
+#add_library(VulkanModule STATIC ${srcs})
 # 链接到库文件
-target_include_directories(VulkanModule PUBLIC include)
+#target_include_directories(VulkanModule PUBLIC include)
 
 
 # TODO: 如有需要，请添加测试并安装目标。
